@@ -1,0 +1,14 @@
+Prediction finale (0 ou 1): 0
+
+Rapport de classification:
+              precision    recall  f1-score   support
+
+           0     0.4584    0.9286    0.6138       196
+           1     0.9692    0.6723    0.7939       656
+
+    accuracy                         0.7312       852
+   macro avg     0.7138    0.8004    0.7039       852
+weighted avg     0.8517    0.7312    0.7525       852
+
+Precision classe 1: 0.9692307692307692
+Recall classe 1: 0.6722560975609756
