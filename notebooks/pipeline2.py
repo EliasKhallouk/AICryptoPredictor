@@ -8,9 +8,12 @@ from keras.layers import Dense, BatchNormalization, Dropout
 from keras.optimizers import Adam
 from keras.callbacks import EarlyStopping
 from datetime import datetime
+import tensorflow as tf
+import numpy as np
+import random
 
 print("📂 Chargement du dataset...")
-file_path = os.path.join("/home/elias/PROJECT/AICryptoPredictor", "btcusd_1-min_data.csv")
+file_path = os.path.join("/home/elias/PROJECT/AICryptoPredictor/data", "btcusd_1-min_data.csv")
 btc = pd.read_csv(file_path)
 
 
@@ -54,8 +57,8 @@ std20 = btc_daily['Close'].rolling(20).std()
 btc_daily['Bollinger_Upper'] = ma20 + 2*std20
 btc_daily['Bollinger_Lower'] = ma20 - 2*std20
 
-# Créer la colonne Target : 1 si le prix du high de demain est supérieur de 50$ à l'ouverture d'aujourd'hui, sinon 0
-btc_daily['Target'] = (btc_daily['High'].shift(-1) > (btc_daily['Open'] + 50)).astype(int)
+# Créer la colonne Target : 1 si le prix du high de demain est supérieur de 2% à l'ouverture d'aujourd'hui, sinon 0
+btc_daily["Target"] = (btc_daily["High"].shift(-1) > (btc_daily["Close"] * 1.005)).astype(int)
 btc_daily = btc_daily.dropna() # Retirer la dernière ligne car elle n'a pas de valeur pour Target
 
 # Supprimer les lignes avec NaN (les premières lignes des rolling)
@@ -81,9 +84,19 @@ X_train_split, X_val, y_train_split, y_val = train_test_split(X_train, y_train, 
 
 
 
+SEED = 42
+np.random.seed(SEED)
+random.seed(SEED)
+tf.random.set_seed(SEED)
+
+
 # Définition explicite de l'entrée
 inputs = Input(shape=(14,))
 x = Dense(256, activation='relu')(inputs)
+x = BatchNormalization()(x)
+x = Dropout(0.3)(x)
+
+x = Dense(1024, activation='relu')(x)
 x = BatchNormalization()(x)
 x = Dropout(0.3)(x)
 
@@ -105,11 +118,17 @@ outputs = Dense(1, activation='sigmoid')(x)
 model = Model(inputs=inputs, outputs=outputs)
 
 # Compilation
+"""
 model.compile(optimizer=Adam(learning_rate=1e-4),
               loss='binary_crossentropy',
+              metrics=['accuracy'])"""
+
+from keras.optimizers import SGD
+model.compile(optimizer=SGD(learning_rate=0.01, momentum=0.9),
+              loss='binary_crossentropy', 
               metrics=['accuracy'])
 
-early_stopping = EarlyStopping(monitor='val_loss', patience=20, restore_best_weights=True)
+early_stopping = EarlyStopping(monitor='val_loss', patience=80, restore_best_weights=True)
 
 # Entraînement
 print("⚡ Entraînement du modèle...")

@@ -1,0 +1,16 @@
+Dernière date du DataSet: 2025-08-31
+
+Prediction finale (0 ou 1): 0
+
+Rapport de classification:
+              precision    recall  f1-score   support
+
+           0     0.6870    1.0000    0.8145       586
+           1     1.0000    0.0037    0.0074       268
+
+    accuracy                         0.6874       854
+   macro avg     0.8435    0.5019    0.4109       854
+weighted avg     0.7852    0.6874    0.5612       854
+
+Precision classe 1: 1.0
+Recall classe 1: 0.0037313432835820895
