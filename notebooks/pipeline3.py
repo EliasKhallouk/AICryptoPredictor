@@ -62,7 +62,11 @@ btc_daily['Bollinger_Upper'] = ma20 + 2*std20
 btc_daily['Bollinger_Lower'] = ma20 - 2*std20
 
 # Target = 1 si High demain > Close * 1.02
-btc_daily['Target'] = (btc_daily['High'].shift(-1) > btc_daily['Close'] * 1.005).astype(int)
+
+POURCENT_MARGE = 1.0075
+# Créer la colonne Target : 1 si le prix du high de demain est supérieur de 0.5% à l'ouverture d'aujourd'hui, sinon 0
+btc_daily["Target"] = (btc_daily["High"].shift(-1) > (btc_daily["Close"] * POURCENT_MARGE)).astype(int)
+#btc_daily['Target'] = (btc_daily['High'].shift(-1) > btc_daily['Close'] * 1.005).astype(int)
 
 # Drop NaN
 btc_daily.dropna(inplace=True)
@@ -96,7 +100,7 @@ x = Dense(256, activation='relu')(inputs)
 x = BatchNormalization()(x)
 x = Dropout(0.3)(x)
 
-x = Dense(256, activation='relu')(x)
+x = Dense(1024, activation='relu')(x)
 x = BatchNormalization()(x)
 x = Dropout(0.3)(x)
 
@@ -115,9 +119,16 @@ x = Dropout(0.3)(x)
 outputs = Dense(1, activation='sigmoid')(x)
 model = Model(inputs=inputs, outputs=outputs)
 
+"""
 model.compile(optimizer=Adam(learning_rate=1e-4),
               loss='binary_crossentropy',
+              metrics=['accuracy'])"""
+
+from keras.optimizers import SGD
+model.compile(optimizer=SGD(learning_rate=0.01, momentum=0.9),
+              loss='binary_crossentropy', 
               metrics=['accuracy'])
+
 
 early_stopping = EarlyStopping(monitor='val_loss', patience=20, restore_best_weights=True)
 
@@ -163,12 +174,15 @@ os.makedirs("results", exist_ok=True)
 output_file = f"/home/elias/PROJECT/AICryptoPredictor/results/prediction_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
 with open(output_file, "w") as f:
     f.write(f"Dernière date du DataSet: {last_date}\n\n")
-    f.write(f"Prediction finale (0 ou 1): {final_prediction}\n\n")
+    f.write("Resultat de la pipeline 3 \n\n")
+    f.write(f"Augmentation prévue de: {POURCENT_MARGE*100}% \n\n")
+    f.write(f"Prediction finale (0 ou 1): {final_prediction}\n")
+    f.write(f"Prix de cloture du {last_date} est à {btc_daily['Close'].iloc[-1]}\n")
+    f.write(f"Prix du High du lendemain est estimé à {btc_daily['Close'].iloc[-1] * POURCENT_MARGE}\n\n")
     f.write("Rapport de classification:\n")
     f.write(report + "\n")
     f.write(f"Precision classe 1: {precision}\n")
     f.write(f"Recall classe 1: {recall}\n")
-    f.write(f"Seuil utilisé pour la prédiction: {best_threshold}\n")
 
 print(f"✅ Résultats sauvegardés dans {output_file}")
 print(f"Seuil optimal trouvé: {best_threshold}")

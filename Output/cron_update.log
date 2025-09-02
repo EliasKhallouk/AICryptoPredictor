@@ -103,3 +103,150 @@ Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data
 
 [2025-09-01 23:00:01.801699] Téléchargement du dataset...
 ✅ Dataset mis à jour dans /data
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250901_233001
+  0%|          | 0.00/96.3M [00:00<?, ?B/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 3.08GB/s]
+
+[2025-09-01 23:30:01.779177] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250901_233001
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250901_234501
+  0%|          | 0.00/96.3M [00:00<?, ?B/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 1.24GB/s]
+
+[2025-09-01 23:45:01.468867] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250901_234501
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_000001
+  0%|          | 0.00/96.3M [00:00<?, ?B/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 1.13GB/s]
+
+[2025-09-02 00:00:01.715531] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_000001
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_001501
+  0%|          | 0.00/96.3M [00:00<?, ?B/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 1.23GB/s]
+
+[2025-09-02 00:15:01.903593] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_001501
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_003001
+  0%|          | 0.00/96.3M [00:00<?, ?B/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 1.24GB/s]
+
+[2025-09-02 00:30:01.715669] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_003001
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_004501
+  0%|          | 0.00/96.3M [00:00<?, ?B/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 1.10GB/s]
+
+[2025-09-02 00:45:01.741639] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_004501
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_010001
+  0%|          | 0.00/96.3M [00:00<?, ?B/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 1.10GB/s]
+
+[2025-09-02 01:00:01.839648] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_010001
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_011501
+  0%|          | 0.00/96.3M [00:00<?, ?B/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 1.17GB/s]
+
+[2025-09-02 01:15:01.914627] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_011501
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_013001
+  0%|          | 0.00/96.3M [00:00<?, ?B/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 1.21GB/s]
+
+[2025-09-02 01:30:01.961770] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_013001
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_014501
+  0%|          | 0.00/96.3M [00:00<?, ?B/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 1.17GB/s]
+
+[2025-09-02 01:45:01.466495] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_014501
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_020001
+  0%|          | 0.00/96.3M [00:00<?, ?B/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 1.29GB/s]
+
+[2025-09-02 02:00:01.928201] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_020001
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_113001
+  0%|          | 0.00/96.3M [00:00<?, ?B/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 1.28GB/s]
+
+[2025-09-02 11:30:01.839954] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_113001
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_114501
+  0%|          | 0.00/96.3M [00:00<?, ?B/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 1.27GB/s]
+
+[2025-09-02 11:45:01.679709] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_114501
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_120001
+  0%|          | 0.00/96.3M [00:00<?, ?B/s] 93%|█████████▎| 90.0M/96.3M [00:00<00:00, 938MB/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 941MB/s]
+
+[2025-09-02 12:00:01.651204] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_120001
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_130001
+  0%|          | 0.00/96.3M [00:00<?, ?B/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 1.14GB/s]
+
+[2025-09-02 13:00:01.566067] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_130001
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_140001
+  0%|          | 0.00/96.3M [00:00<?, ?B/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 1.08GB/s]
+
+[2025-09-02 14:00:01.517596] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_140001
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_150001
+  0%|          | 0.00/96.3M [00:00<?, ?B/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 1.02GB/s]
+
+[2025-09-02 15:00:01.781157] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_150001
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_160002
+  0%|          | 0.00/96.3M [00:00<?, ?B/s] 81%|████████  | 78.0M/96.3M [00:00<00:00, 812MB/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 821MB/s]
+
+[2025-09-02 16:00:02.084301] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_160002
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_170001
+  0%|          | 0.00/96.3M [00:00<?, ?B/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 1.20GB/s]
+
+[2025-09-02 17:00:01.253056] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_170001
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_200001
+  0%|          | 0.00/96.3M [00:00<?, ?B/s] 71%|███████   | 68.0M/96.3M [00:00<00:00, 708MB/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 654MB/s]
+
+[2025-09-02 20:00:01.832494] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_200001
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_210001
+  0%|          | 0.00/96.3M [00:00<?, ?B/s] 96%|█████████▌| 92.0M/96.3M [00:00<00:00, 965MB/s]100%|██████████| 96.3M/96.3M [00:00<00:00, 969MB/s]
+
+[2025-09-02 21:00:01.469110] Téléchargement du dataset...
+✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250902_210001

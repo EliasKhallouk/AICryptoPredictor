@@ -1,0 +1,27 @@
+Dernière date du DataSet: 2025-08-31
+2x1024
+optimizer=SGD 
+learning_rate=1e-4
+patience=20
+avec penalité
+threshold = 0.8 
+Resultat de la pipeline 2 
+
+Augmentation prévue de: 100.75% 
+
+Prediction finale (0 ou 1): 1
+Prix de cloture du 2025-08-31 est à 108248.0
+Prix du High du lendemain est estimé à 109059.86
+
+Rapport de classification:
+              precision    recall  f1-score   support
+
+           0     0.2834    0.2961    0.2896       179
+           1     0.8111    0.8015    0.8063       675
+
+    accuracy                         0.6956       854
+   macro avg     0.5473    0.5488    0.5479       854
+weighted avg     0.7005    0.6956    0.6980       854
+
+Precision classe 1: 0.8110944527736131
+Recall classe 1: 0.8014814814814815
