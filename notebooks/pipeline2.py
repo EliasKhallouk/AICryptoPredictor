@@ -164,7 +164,7 @@ recall = recall_score(y_test, y_pred)
 
 # 6. Sauvegarder prédiction finale (0 ou 1) + log
 final_prediction = int(y_pred[-1][0])  # dernière valeur prédite
-output_file = f"/home/elias/PROJECT/AICryptoPredictor/results/prediction_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt"
+output_file = f"/home/elias/PROJECT/AICryptoPredictor/results/prediction_{datetime.now().strftime('%Y%m%d_%H')}.txt"
 last_date = btc_daily.index[-1].strftime("%Y-%m-%d")
 
 os.makedirs("results", exist_ok=True)
@@ -179,6 +179,10 @@ with open(output_file, "w") as f:
     f.write(report + "\n")
     f.write(f"Precision classe 1: {precision}\n")
     f.write(f"Recall classe 1: {recall}\n")
-
-
 print(f"✅ Résultats sauvegardés dans {output_file}")
+
+
+signal_file = "/home/elias/PROJECT/AICryptoPredictor/Output/signal.txt"
+with open(signal_file, "w") as f:
+    f.write(str(final_prediction))
+
