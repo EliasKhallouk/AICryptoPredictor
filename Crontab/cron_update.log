@@ -704,3 +704,4 @@ Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data/bitc
 
 [2025-09-03 19:00:01.369395] Téléchargement du dataset...
 ✅ Nouveau dataset téléchargé dans ./PROJECT/AICryptoPredictor/data/bitcoin_dataset_20250903_190001
+bash: 15 : commande introuvable
