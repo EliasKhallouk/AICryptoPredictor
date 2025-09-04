@@ -1,0 +1,22 @@
+Dernière date du DataSet: 2025-09-03
+
+Resultat de la pipeline 2 
+
+Augmentation prévue de: 100.75% 
+
+Prediction finale (0 ou 1): 0
+Prix de cloture du 2025-09-03 est à 111703.0
+Prix du High du lendemain est estimé à 112540.7725
+
+Rapport de classification:
+              precision    recall  f1-score   support
+
+           0     0.2845    0.5787    0.3815       178
+           1     0.8485    0.6186    0.7155       679
+
+    accuracy                         0.6103       857
+   macro avg     0.5665    0.5986    0.5485       857
+weighted avg     0.7314    0.6103    0.6461       857
+
+Precision classe 1: 0.8484848484848485
+Recall classe 1: 0.6185567010309279

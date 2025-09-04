@@ -66,6 +66,103 @@ btc_daily["Target"] = (
 ).astype(int)
 btc_daily = btc_daily.dropna() # Retirer la dernière ligne car elle n'a pas de valeur pour Target
 
+"""
+eps = 1e-9
+
+# === 1) Volatilité / Range ===
+# True Range components
+prev_close = btc_daily['Close'].shift(1)
+tr1 = btc_daily['High'] - btc_daily['Low']
+tr2 = (btc_daily['High'] - prev_close).abs()
+tr3 = (btc_daily['Low'] - prev_close).abs()
+btc_daily['TrueRange'] = np.max(np.vstack([tr1.values, tr2.values, tr3.values]), axis=0)
+btc_daily['ATR14'] = btc_daily['TrueRange'].rolling(14).mean()
+
+# Parkinson HL volatility (annualisée optionnelle, ici brute rolling)
+btc_daily['Parkinson20'] = (np.log(btc_daily['High'] / (btc_daily['Low'] + eps))**2).rolling(20).mean()
+
+# Garman-Klass (approx daily)
+hl = np.log(btc_daily['High'] / (btc_daily['Low'] + eps))**2
+co = np.log(btc_daily['Close'] / (btc_daily['Open'] + eps))**2
+btc_daily['GarmanKlass20'] = (0.5*hl - (2*np.log(2)-1)*co).rolling(20).mean()
+
+# Position et range relatifs
+rng = (btc_daily['High'] - btc_daily['Low']).replace(0, eps)
+btc_daily['Position_in_range'] = (btc_daily['Close'] - btc_daily['Low']) / rng
+btc_daily['Range_pct'] = (btc_daily['High'] - btc_daily['Low']) / (btc_daily['Close'] + eps)
+
+# === 2) Structure de bougie ===
+body = (btc_daily['Close'] - btc_daily['Open']).abs()
+btc_daily['Body_pct'] = body / rng
+btc_daily['Upper_wick_pct'] = (btc_daily['High'] - btc_daily['Close']).clip(lower=0) / (rng + eps)
+btc_daily['Lower_wick_pct'] = (btc_daily['Close'] - btc_daily['Low']).clip(lower=0) / (rng + eps)
+
+# === 3) Momentum multi-horizons ===
+btc_daily['ROC5'] = btc_daily['Close'].pct_change(5)
+btc_daily['ROC10'] = btc_daily['Close'].pct_change(10)
+btc_daily['Zscore_Return_20'] = (
+    (btc_daily['Return'] - btc_daily['Return'].rolling(20).mean()) /
+    (btc_daily['Return'].rolling(20).std() + eps)
+)
+btc_daily['Slope_MA7'] = btc_daily['MA7'] - btc_daily['MA7'].shift(1)
+
+# === 4) Oscillateurs complémentaires ===
+# Stochastique %K/%D (14,3)
+low14 = btc_daily['Low'].rolling(14).min()
+high14 = btc_daily['High'].rolling(14).max()
+btc_daily['Stoch_K'] = 100 * (btc_daily['Close'] - low14) / ((high14 - low14) + eps)
+btc_daily['Stoch_D'] = btc_daily['Stoch_K'].rolling(3).mean()
+
+# Williams %R (14)
+btc_daily['WilliamsR'] = -100 * (high14 - btc_daily['Close']) / ((high14 - low14) + eps)
+
+# MACD histogram
+btc_daily['MACD_hist'] = btc_daily['MACD'] - btc_daily['Signal']
+
+# === 5) Volume / Flux ===
+btc_daily['Volume_z20'] = (
+    (btc_daily['Volume'] - btc_daily['Volume'].rolling(20).mean()) /
+    (btc_daily['Volume'].rolling(20).std() + eps)
+)
+
+# OBV
+obv = [0.0]
+for i in range(1, len(btc_daily)):
+    if btc_daily['Close'].iloc[i] > btc_daily['Close'].iloc[i-1]:
+        obv.append(obv[-1] + btc_daily['Volume'].iloc[i])
+    elif btc_daily['Close'].iloc[i] < btc_daily['Close'].iloc[i-1]:
+        obv.append(obv[-1] - btc_daily['Volume'].iloc[i])
+    else:
+        obv.append(obv[-1])
+btc_daily['OBV'] = obv
+btc_daily['OBV_roc5'] = btc_daily['OBV'].pct_change(5)
+
+# Chaikin Money Flow (CMF 20)
+mfm = ((btc_daily['Close'] - btc_daily['Low']) - (btc_daily['High'] - btc_daily['Close'])) / (rng + eps)
+mfv = mfm * btc_daily['Volume']
+btc_daily['CMF20'] = mfv.rolling(20).sum() / (btc_daily['Volume'].rolling(20).sum() + eps)
+"""
+"""
+eps = 1e-9
+rng = (btc_daily['High'] - btc_daily['Low']).replace(0, eps)
+body = (btc_daily['Close'] - btc_daily['Open']).abs()
+low14 = btc_daily['Low'].rolling(14).min()
+high14 = btc_daily['High'].rolling(14).max()
+
+prev_close = btc_daily['Close'].shift(1)
+tr1 = btc_daily['High'] - btc_daily['Low']
+tr2 = (btc_daily['High'] - prev_close).abs()
+tr3 = (btc_daily['Low'] - prev_close).abs()
+btc_daily['TrueRange'] = np.max(np.vstack([tr1.values, tr2.values, tr3.values]), axis=0)
+btc_daily['ATR14'] = btc_daily['TrueRange'].rolling(14).mean()
+
+btc_daily['MACD_hist'] = btc_daily['MACD'] - btc_daily['Signal']
+
+btc_daily['Volume_z20'] = (
+    (btc_daily['Volume'] - btc_daily['Volume'].rolling(20).mean()) /
+    (btc_daily['Volume'].rolling(20).std() + eps)
+)
+"""
 # Supprimer les lignes avec NaN (les premières lignes des rolling)
 btc_daily.dropna(inplace=True)
 
@@ -97,29 +194,30 @@ tf.random.set_seed(SEED)
 
 # Définition explicite de l'entrée
 inputs = Input(shape=(14,))
+
 x = Dense(256, activation='relu')(inputs)
 x = BatchNormalization()(x)
-x = Dropout(0.3)(x)
+x = Dropout(0.2)(x)
 
 x = Dense(1024, activation='relu')(x)
 x = BatchNormalization()(x)
-x = Dropout(0.3)(x)
+x = Dropout(0.2)(x)
 
 x = Dense(1024, activation='relu')(x)
 x = BatchNormalization()(x)
-x = Dropout(0.3)(x)
+x = Dropout(0.2)(x)
 
 x = Dense(256, activation='relu')(x)
 x = BatchNormalization()(x)
-x = Dropout(0.3)(x)
+x = Dropout(0.2)(x)
 
 x = Dense(128, activation='relu')(x)
 x = BatchNormalization()(x)
-x = Dropout(0.3)(x)
+x = Dropout(0.2)(x)
 
 x = Dense(64, activation='relu')(x)
 x = BatchNormalization()(x)
-x = Dropout(0.3)(x)
+x = Dropout(0.2)(x)
 
 # Sortie binaire
 outputs = Dense(1, activation='sigmoid')(x)
@@ -133,7 +231,7 @@ model.compile(optimizer=Adam(learning_rate=1e-4),
               metrics=['accuracy'])"""
 
 from keras.optimizers import SGD
-model.compile(optimizer=SGD(learning_rate=1e-4, momentum=0.9),
+model.compile(optimizer=SGD(learning_rate=1e-4, momentum=0.88),
               loss='binary_crossentropy', 
               metrics=['accuracy'])
 
@@ -155,7 +253,7 @@ history = model.fit(
 # 5. Évaluation
 print("📊 Évaluation...")
 y_pred_proba = model.predict(X_test)
-threshold = 0.8  # seuil fixe pour la classification
+threshold = 0.789  # seuil fixe pour la classification
 y_pred = (y_pred_proba > threshold).astype(int)
 
 report = classification_report(y_test, y_pred, digits=4)
