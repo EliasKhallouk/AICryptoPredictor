@@ -15,7 +15,8 @@ SMTP_PORT = 587
 EMAIL_ADDRESS = os.getenv("EMAIL_ENV")
 EMAIL_PASSWORD =  os.getenv("EMAIL_PASSWORD") 
 
-TO_ADDRESSES = [os.getenv("EMAIL_ENV"), os.getenv("EMAIL_DEST")]
+#TO_ADDRESSES = [os.getenv("EMAIL_ENV"), os.getenv("EMAIL_DEST")]
+TO_ADDRESSES = [os.getenv("EMAIL_ENV")]
 
 # 📄 Fichier de résultat généré par ton modèle
 result_file = f"/home/elias/PROJECT/AICryptoPredictor/results/prediction_{datetime.now().strftime('%Y%m%d_%H')}.txt"

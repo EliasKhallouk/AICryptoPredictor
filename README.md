@@ -2,7 +2,7 @@
 **Auteur :** Elias Khallouk
 
 **Date de début :** 30/08/2025  
-**Dernière mise à jour :** 04/09/2025  
+**Dernière mise à jour :** 08/09/2025  
 
 ## Description du projet
 
@@ -116,7 +116,7 @@ Exemple :
 
 17 2 * * * /home/elias/anaconda3/envs/crypto_predictor/bin/python /home/elias/PROJECT/AICryptoPredictor/notebooks/pipeline2.py >> /home/elias/PROJECT/AICryptoPredictor/Crontab/cron_pipeline2.log 2>&1
 
-26 2 * * * /home/elias/anaconda3/envs/crypto_predictor/bin/python /home/elias/PROJECT/AICryptoPredictor/notebooks/AutoTrader.py >> /home/elias/PROJECT/AICryptoPredictor/Crontab/cron_trader.log 2>&1
+26 2 * * * /home/elias/anaconda3/envs/crypto_predictor/bin/python /home/elias/PROJECT/AICryptoPredictor/notebooks/AutoTrader2.py >> /home/elias/PROJECT/AICryptoPredictor/Crontab/cron_trader2.log 2>&1
 
 28 2 * * * /home/elias/anaconda3/envs/crypto_predictor/bin/python /home/elias/PROJECT/AICryptoPredictor/notebooks/AutoMail.py >> /home/elias/PROJECT/AICryptoPredictor/Crontab/cron_mail.log 2>&1
 
