@@ -283,4 +283,7 @@ print(f"✅ Résultats sauvegardés dans {output_file}")
 signal_file = "/home/elias/PROJECT/AICryptoPredictor/Output/signal.txt"
 with open(signal_file, "w") as f:
     f.write(str(final_prediction))
+    f.write("\n")
+    f.write(str(btc_daily['Close'].iloc[-1] * POURCENT_MARGE))
+
 
