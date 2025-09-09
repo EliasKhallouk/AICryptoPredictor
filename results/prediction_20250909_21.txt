@@ -1,0 +1,30 @@
+
+--- 2025-09-09 21:23:08 ---
+Action : Rapport final
+
+📊 Solde actuel :
+  ETH : 213.0783 libres / 0.0 bloqués
+  USDT : 50.84489716 libres / 0.0 bloqués
+  WIN : 36892.0 libres / 0.0 bloqués
+  TRY : 36932.0 libres / 0.0 bloqués
+  ZAR : 36932.0 libres / 0.0 bloqués
+  UAH : 36932.0 libres / 0.0 bloqués
+  DAI : 20000.0 libres / 0.0 bloqués
+  BRL : 194.0 libres / 0.0 bloqués
+  SHIB : 36892.0 libres / 0.0 bloqués
+  XEC : 36892.0 libres / 0.0 bloqués
+  BTTC : 36892.0 libres / 0.0 bloqués
+  LUNC : 36892.0 libres / 0.0 bloqués
+  PLN : 36932.0 libres / 0.0 bloqués
+  RON : 36932.0 libres / 0.0 bloqués
+  ARS : 36932.0 libres / 0.0 bloqués
+  PEPE : 36892.0 libres / 0.0 bloqués
+  BONK : 36892.0 libres / 0.0 bloqués
+  JPY : 36932.0 libres / 0.0 bloqués
+  MXN : 36932.0 libres / 0.0 bloqués
+  COP : 36932.0 libres / 0.0 bloqués
+  CZK : 36932.0 libres / 0.0 bloqués
+
+📌 Ordres ouverts :
+  Aucun ordre ouvert.
+
