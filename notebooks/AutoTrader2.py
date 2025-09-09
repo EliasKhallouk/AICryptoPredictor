@@ -207,6 +207,7 @@ def rapport(action, prix=None, qty=None, ordre=None):
 # ▶️ EXECUTION
 # ==============================
 if __name__ == "__main__":
+    rapport("Rapport final")
     strategie()
     #afficher_ordres_ouverts()
     rapport("Rapport final")

@@ -1,0 +1,123 @@
+Dernière date du DataSet: 2025-09-08
+
+Resultat de la pipeline 2 
+
+Augmentation prévue de: 100.75% 
+
+Prediction finale (0 ou 1): 1
+Prix de cloture du 2025-09-08 est à 112095.0
+Prix du High du lendemain est estimé à 112935.71250000001
+
+Rapport de classification:
+              precision    recall  f1-score   support
+
+           0     0.3478    0.2247    0.2730       178
+           1     0.8153    0.8904    0.8512       684
+
+    accuracy                         0.7529       862
+   macro avg     0.5815    0.5575    0.5621       862
+weighted avg     0.7187    0.7529    0.7318       862
+
+Precision classe 1: 0.8152610441767069
+Recall classe 1: 0.8903508771929824
+
+--- 2025-09-09 02:26:03 ---
+Action : Achat
+Prix : 111663.57
+Quantité : 0.00045
+Ordre ID : 510684
+Status : FILLED
+
+📊 Solde actuel :
+  ETH : 213.0783 libres / 0.0 bloqués
+  BTC : 0.00045 libres / 0.0 bloqués
+  USDT : 0.02382766 libres / 0.0 bloqués
+  WIN : 36892.0 libres / 0.0 bloqués
+  TRY : 36932.0 libres / 0.0 bloqués
+  ZAR : 36932.0 libres / 0.0 bloqués
+  UAH : 36932.0 libres / 0.0 bloqués
+  DAI : 20000.0 libres / 0.0 bloqués
+  BRL : 194.0 libres / 0.0 bloqués
+  SHIB : 36892.0 libres / 0.0 bloqués
+  XEC : 36892.0 libres / 0.0 bloqués
+  BTTC : 36892.0 libres / 0.0 bloqués
+  LUNC : 36892.0 libres / 0.0 bloqués
+  PLN : 36932.0 libres / 0.0 bloqués
+  RON : 36932.0 libres / 0.0 bloqués
+  ARS : 36932.0 libres / 0.0 bloqués
+  PEPE : 36892.0 libres / 0.0 bloqués
+  BONK : 36892.0 libres / 0.0 bloqués
+  JPY : 36932.0 libres / 0.0 bloqués
+  MXN : 36932.0 libres / 0.0 bloqués
+  COP : 36932.0 libres / 0.0 bloqués
+  CZK : 36932.0 libres / 0.0 bloqués
+
+📌 Ordres ouverts :
+  Aucun ordre ouvert.
+
+
+--- 2025-09-09 02:26:04 ---
+Action : Vente LIMIT
+Prix : 112935.71
+Quantité : 0.00045
+Ordre ID : 510688
+Status : NEW
+
+📊 Solde actuel :
+  ETH : 213.0783 libres / 0.0 bloqués
+  BTC : 0.0 libres / 0.00045 bloqués
+  USDT : 0.02382766 libres / 0.0 bloqués
+  WIN : 36892.0 libres / 0.0 bloqués
+  TRY : 36932.0 libres / 0.0 bloqués
+  ZAR : 36932.0 libres / 0.0 bloqués
+  UAH : 36932.0 libres / 0.0 bloqués
+  DAI : 20000.0 libres / 0.0 bloqués
+  BRL : 194.0 libres / 0.0 bloqués
+  SHIB : 36892.0 libres / 0.0 bloqués
+  XEC : 36892.0 libres / 0.0 bloqués
+  BTTC : 36892.0 libres / 0.0 bloqués
+  LUNC : 36892.0 libres / 0.0 bloqués
+  PLN : 36932.0 libres / 0.0 bloqués
+  RON : 36932.0 libres / 0.0 bloqués
+  ARS : 36932.0 libres / 0.0 bloqués
+  PEPE : 36892.0 libres / 0.0 bloqués
+  BONK : 36892.0 libres / 0.0 bloqués
+  JPY : 36932.0 libres / 0.0 bloqués
+  MXN : 36932.0 libres / 0.0 bloqués
+  COP : 36932.0 libres / 0.0 bloqués
+  CZK : 36932.0 libres / 0.0 bloqués
+
+📌 Ordres ouverts :
+  ID 510688 | SELL 0.00045000 BTCUSDT à 112935.71000000 | statut : NEW
+
+
+--- 2025-09-09 02:26:05 ---
+Action : Rapport final
+
+📊 Solde actuel :
+  ETH : 213.0783 libres / 0.0 bloqués
+  BTC : 0.0 libres / 0.00045 bloqués
+  USDT : 0.02382766 libres / 0.0 bloqués
+  WIN : 36892.0 libres / 0.0 bloqués
+  TRY : 36932.0 libres / 0.0 bloqués
+  ZAR : 36932.0 libres / 0.0 bloqués
+  UAH : 36932.0 libres / 0.0 bloqués
+  DAI : 20000.0 libres / 0.0 bloqués
+  BRL : 194.0 libres / 0.0 bloqués
+  SHIB : 36892.0 libres / 0.0 bloqués
+  XEC : 36892.0 libres / 0.0 bloqués
+  BTTC : 36892.0 libres / 0.0 bloqués
+  LUNC : 36892.0 libres / 0.0 bloqués
+  PLN : 36932.0 libres / 0.0 bloqués
+  RON : 36932.0 libres / 0.0 bloqués
+  ARS : 36932.0 libres / 0.0 bloqués
+  PEPE : 36892.0 libres / 0.0 bloqués
+  BONK : 36892.0 libres / 0.0 bloqués
+  JPY : 36932.0 libres / 0.0 bloqués
+  MXN : 36932.0 libres / 0.0 bloqués
+  COP : 36932.0 libres / 0.0 bloqués
+  CZK : 36932.0 libres / 0.0 bloqués
+
+📌 Ordres ouverts :
+  ID 510688 | SELL 0.00045000 BTCUSDT à 112935.71000000 | statut : NEW
+
