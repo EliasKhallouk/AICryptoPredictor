@@ -11,8 +11,10 @@ from datetime import datetime
 import tensorflow as tf
 import numpy as np
 import random
-from keras.optimizers import SGD
-
+import tensorflow as tf
+from tensorflow.keras.layers import Input, LSTM, Dense, Dropout, BatchNormalization
+from tensorflow.keras.models import Model
+from tensorflow.keras.callbacks import EarlyStopping
 
 print("📂 Chargement du dataset...")
 file_path = os.path.join("/home/elias/PROJECT/AICryptoPredictor/data", "btcusd_1-min_data.csv")
@@ -168,87 +170,109 @@ btc_daily['Volume_z20'] = (
 # Supprimer les lignes avec NaN (les premières lignes des rolling)
 btc_daily.dropna(inplace=True)
 
-# Split train/test
-split_date = '2023-05-01'
-train = btc_daily[btc_daily.index < split_date]
-test = btc_daily[btc_daily.index >= split_date]
-
-
-# Variables explicatives (toutes les colonnes sauf Target)
-X_train = train.drop(columns=["Target"])
-X_test = test.drop(columns=["Target"])
-
-# Variable cible (ce qu’on veut prédire : Target)
-y_train = train["Target"]
-y_test = test["Target"]
-
-
-# Création d'un jeu de validation à partir de X_train et y_train
-X_train_split, X_val, y_train_split, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=42)
+# ---------------------------
+# ↪️ INSÈRE ICI : LSTM (entre préparation des features et l'évaluation)
+# ---------------------------
+from sklearn.preprocessing import StandardScaler
+from keras.losses import BinaryFocalCrossentropy
 
 
 
-SEED = 73
-np.random.seed(SEED)
-random.seed(SEED)
-tf.random.set_seed(SEED)
+# Paramètres
+WINDOW_SIZE = 14          # nombre de jours pour la séquence (tu peux ajuster)
+BATCH_SIZE = 32
+EPOCHS = 100
+THRESHOLD = 0.789         # seuil de classification (tu avais 0.789)
+SPLIT_DATE = '2023-05-01' # si tu veux utiliser un split temporel fixe
 
+# 1) Split train/test temporel (garantit qu'on n'utilise pas le futur)
+# Si tu as déjà un split ailleurs, ajuste cette partie en conséquence.
+train = btc_daily[btc_daily.index < SPLIT_DATE]
+test = btc_daily[btc_daily.index >= SPLIT_DATE]
 
-# Définition explicite de l'entrée
-inputs = Input(shape=(14,))
+X_train_df = train.drop(columns=["Target"])
+X_test_df  = test.drop(columns=["Target"])
+y_train_ser = train["Target"]
+y_test_ser  = test["Target"]
 
-x = Dense(256, activation='relu')(inputs)
+# 2) Normalisation (fit uniquement sur le train)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train_df)
+X_test_scaled  = scaler.transform(X_test_df)
+
+# 3) Fonction pour créer des séquences (X_seq, y_seq)
+def create_sequences(X, y, window):
+    Xs, ys = [], []
+    for i in range(len(X) - window):
+        Xs.append(X[i:(i + window)])
+        # label ciblé = la cible juste après la fenêtre (prévoir le futur)
+        ys.append(y.iloc[i + window])
+    return np.array(Xs), np.array(ys)
+
+# 4) Créer séquences pour train et test
+X_train_seq, y_train_seq = create_sequences(pd.DataFrame(X_train_df), y_train_ser.reset_index(drop=True), WINDOW_SIZE)
+X_test_seq,  y_test_seq  = create_sequences(pd.DataFrame(X_test_df),  y_test_ser.reset_index(drop=True),  WINDOW_SIZE)
+
+# 5) Si nécessaire : remettre la dimension features (timesteps, features)
+# Ici X_train_seq shape = (samples, window, n_features) (n_features = nb de colonnes de X)
+print(f"Sequences shapes -> X_train: {X_train_seq.shape}, y_train: {y_train_seq.shape}, X_test: {X_test_seq.shape}, y_test: {y_test_seq.shape}")
+
+# 6) Construire le modèle LSTM
+tf.keras.backend.clear_session()
+
+inputs = Input(shape=(X_train_seq.shape[1], X_train_seq.shape[2]))  # (window, n_features)
+x = LSTM(64, return_sequences=True)(inputs)
 x = BatchNormalization()(x)
 x = Dropout(0.2)(x)
 
-x = Dense(1024, activation='relu')(x)
+x = LSTM(64, return_sequences=True)(x)
 x = BatchNormalization()(x)
 x = Dropout(0.2)(x)
 
-x = Dense(1024, activation='relu')(x)
+x = LSTM(32)(x)
 x = BatchNormalization()(x)
 x = Dropout(0.2)(x)
 
-x = Dense(256, activation='relu')(x)
-x = BatchNormalization()(x)
-x = Dropout(0.2)(x)
-
-x = Dense(128, activation='relu')(x)
-x = BatchNormalization()(x)
-x = Dropout(0.2)(x)
-
-x = Dense(64, activation='relu')(x)
-x = BatchNormalization()(x)
-x = Dropout(0.2)(x)
-
-# Sortie binaire
-outputs = Dense(1, activation='sigmoid')(x)
-
+outputs = Dense(1, activation="sigmoid")(x)
 model = Model(inputs=inputs, outputs=outputs)
 
-# Compilation
-"""
-model.compile(optimizer=Adam(learning_rate=1e-4),
-              loss='binary_crossentropy',
-              metrics=['accuracy'])"""
+# 7) Compilation avec focal loss (tensorflow-addons)
+#loss_fn = SigmoidFocalCrossEntropy(from_logits=False, reduction=tf.keras.losses.Reduction.AUTO)
+loss=BinaryFocalCrossentropy()
+model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=1e-4),
+              loss=loss,
+              metrics=["accuracy"])
 
-model.compile(optimizer=SGD(learning_rate=1e-4, momentum=0.88),
-              loss='binary_crossentropy', 
-              metrics=['accuracy'])
+# 8) Callbacks et class_weight (mettre plus de poids sur la classe 0 = "baisse")
+early_stopping = EarlyStopping(monitor="val_loss", patience=15, restore_best_weights=True)
+class_weight = {0: 1.0, 1: 4.0}  # renforce apprentissage de la classe minoritaire (baisse)
 
-
-
-early_stopping = EarlyStopping(monitor='val_loss', patience=20, restore_best_weights=True)
-
-# Entraînement
-print("⚡ Entraînement du modèle...")
+# 9) Entraînement
+print("⚡ Entraînement LSTM...")
 history = model.fit(
-    X_train_split, y_train_split,
-    epochs=100, batch_size=32,
-    validation_data=(X_val, y_val),
+    X_train_seq, y_train_seq,
+    validation_data=(X_test_seq, y_test_seq),
+    epochs=EPOCHS,
+    batch_size=BATCH_SIZE,
     callbacks=[early_stopping],
-    class_weight={0: 1, 1: 2}  # pénalise plus les faux positifs (classe 1)
+    class_weight=class_weight,
+    verbose=2
 )
+
+# 10) Remplacer l'appel plus loin : on prédit sur X_test_seq (séquences)
+# (Le reste de ta pipeline d'évaluation utilise `y_test` et `model.predict(X_test)` ;
+# ici on remplace par:)
+y_pred_proba = model.predict(X_test_seq)
+y_pred = (y_pred_proba > THRESHOLD).astype(int)
+
+# Pour la suite, remplacer y_test par y_test_seq si besoin (alignement temporel)
+# On réassigne pour que la suite du script fonctionne tel quel
+X_test = X_test_seq
+y_test = y_test_seq
+# ---------------------------
+# Fin du bloc LSTM
+# ---------------------------
+
 
 
 # 5. Évaluation
@@ -269,7 +293,7 @@ last_date = btc_daily.index[-1].strftime("%Y-%m-%d")
 os.makedirs("results", exist_ok=True)
 with open(output_file, "w") as f:
     f.write(f"Dernière date du DataSet: {last_date}\n\n")
-    f.write("Resultat de la pipeline 2 \n\n")
+    f.write("Resultat de la pipeline 6 \n\n")
     f.write(f"Augmentation prévue de: {POURCENT_MARGE*100}% \n\n")
     f.write(f"Prediction finale (0 ou 1): {final_prediction}\n")
     f.write(f"Prix de cloture du {last_date} est à {btc_daily['Close'].iloc[-1]}\n")

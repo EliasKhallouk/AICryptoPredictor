@@ -761,3 +761,10 @@ Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data
 
 [2025-09-09 02:15:01.079707] Téléchargement du dataset...
 ✅ Dataset mis à jour dans /data
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data
+  0%|          | 0.00/96.5M [00:00<?, ?B/s] 94%|█████████▍| 91.0M/96.5M [00:00<00:00, 946MB/s]100%|██████████| 96.5M/96.5M [00:00<00:00, 954MB/s]
+
+[2025-09-10 08:06:03.049750] Téléchargement du dataset...
+✅ Dataset mis à jour dans /data

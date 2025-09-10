@@ -123,9 +123,9 @@ y_train, y_test = y_seq[:split_idx], y_seq[split_idx:]
 # -----------------------------
 
 model = Sequential([
-    Conv1D(filters=128, kernel_size=5, activation='relu', padding='same', input_shape=(n_steps, X_train.shape[2])),
+    Conv1D(filters=64, kernel_size=5, activation='relu', padding='same', input_shape=(n_steps, X_train.shape[2])),
     BatchNormalization(),
-    Conv1D(filters=128, kernel_size=5, activation='relu', padding='same'),
+    Conv1D(filters=64, kernel_size=5, activation='relu', padding='same'),
     BatchNormalization(),
     MaxPooling1D(pool_size=2),
     Dropout(0.3),  # Réduction du dropout pour ne pas trop perdre d'informations
@@ -137,9 +137,9 @@ model = Sequential([
     MaxPooling1D(pool_size=2),
     Dropout(0.3),
     
-    Conv1D(filters=512, kernel_size=5, activation='relu', padding='same'),
+    Conv1D(filters=128, kernel_size=5, activation='relu', padding='same'),
     BatchNormalization(),
-    Conv1D(filters=512, kernel_size=5, activation='relu', padding='same'),
+    Conv1D(filters=128, kernel_size=5, activation='relu', padding='same'),
     BatchNormalization(),
     MaxPooling1D(pool_size=2),
     Dropout(0.3),
@@ -168,7 +168,7 @@ early_stopping = EarlyStopping(monitor='val_loss', patience=10, restore_best_wei
 print("⚡ Entraînement du CNN...")
 history = model.fit(
     X_train, y_train,
-    epochs=50, batch_size=32,
+    epochs=10, batch_size=32,
     validation_split=0.2,
     callbacks=[early_stopping]
 )

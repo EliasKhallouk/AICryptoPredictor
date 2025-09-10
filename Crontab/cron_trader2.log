@@ -5,3 +5,10 @@
 ✅ Ordre de vente LIMIT placé à 112935.71 USDT pour 0.00045 BTC
 
 ✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 112345.3175
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 721375, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJc724e161a152a3ae37c868', 'transactTime': 1757484569682, 'price': '0.00000000', 'origQty': '0.00045000', 'executedQty': '0.00045000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '50.16098250', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1757484569682, 'fills': [{'price': '111468.85000000', 'qty': '0.00045000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 176693}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 112345.32 USDT pour 0.00045 BTC
+
+✅ Fin du script de AutoTrader2.
