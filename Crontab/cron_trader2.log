@@ -12,3 +12,28 @@
 ✅ Ordre de vente LIMIT placé à 112345.32 USDT pour 0.00045 BTC
 
 ✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 114799.58750000001
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 852170, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJc15505f620000d4af8995a', 'transactTime': 1757550363998, 'price': '0.00000000', 'origQty': '0.00045000', 'executedQty': '0.00045000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '51.21180450', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1757550363998, 'fills': [{'price': '113804.01000000', 'qty': '0.00045000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 212930}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 114799.59 USDT pour 0.00045 BTC
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 114799.58750000001
+🚀 Signal d'achat détecté.
+⚠️ Pas assez d'USDT (0.02750416) pour acheter.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 116973.7725
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 1150287, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJ34317b685c306d7e0881f2', 'transactTime': 1757723164368, 'price': '0.00000000', 'origQty': '0.00044000', 'executedQty': '0.00044000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '51.09214880', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1757723164368, 'fills': [{'price': '116118.52000000', 'qty': '0.00044000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 303984}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 116973.77 USDT pour 0.00044 BTC
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 0, prix cible = 116852.87250000001
+❌ Signal neutre ou baisse. Pas d'achat.
+
+✅ Fin du script de AutoTrader2.
