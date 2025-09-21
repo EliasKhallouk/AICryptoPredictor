@@ -1,0 +1,82 @@
+Dernière date du DataSet: 2025-09-14
+
+Resultat de la pipeline 2 
+
+Augmentation prévue de: 100.75% 
+
+Prediction finale (0 ou 1): 0
+Prix de cloture du 2025-09-14 est à 115416.0
+Prix du High du lendemain est estimé à 116281.62000000001
+
+Rapport de classification:
+              precision    recall  f1-score   support
+
+           0     0.3356    0.2778    0.3040       180
+           1     0.8192    0.8561    0.8372       688
+
+    accuracy                         0.7362       868
+   macro avg     0.5774    0.5669    0.5706       868
+weighted avg     0.7189    0.7362    0.7267       868
+
+Precision classe 1: 0.8191933240611962
+Recall classe 1: 0.8561046511627907
+
+--- 2025-09-15 21:03:43 ---
+Action : Rapport final
+
+📊 Solde actuel :
+  ETH : 213.0783 libres / 0.0 bloqués
+  USDT : 52.06362966 libres / 0.0 bloqués
+  WIN : 36892.0 libres / 0.0 bloqués
+  TRY : 36932.0 libres / 0.0 bloqués
+  ZAR : 36932.0 libres / 0.0 bloqués
+  UAH : 36932.0 libres / 0.0 bloqués
+  DAI : 20000.0 libres / 0.0 bloqués
+  BRL : 194.0 libres / 0.0 bloqués
+  SHIB : 36892.0 libres / 0.0 bloqués
+  XEC : 36892.0 libres / 0.0 bloqués
+  BTTC : 36892.0 libres / 0.0 bloqués
+  LUNC : 36892.0 libres / 0.0 bloqués
+  PLN : 36932.0 libres / 0.0 bloqués
+  RON : 36932.0 libres / 0.0 bloqués
+  ARS : 36932.0 libres / 0.0 bloqués
+  PEPE : 36892.0 libres / 0.0 bloqués
+  BONK : 36892.0 libres / 0.0 bloqués
+  JPY : 36932.0 libres / 0.0 bloqués
+  MXN : 36932.0 libres / 0.0 bloqués
+  COP : 36932.0 libres / 0.0 bloqués
+  CZK : 36932.0 libres / 0.0 bloqués
+
+📌 Ordres ouverts :
+  Aucun ordre ouvert.
+
+
+--- 2025-09-15 21:03:44 ---
+Action : Rapport final
+
+📊 Solde actuel :
+  ETH : 213.0783 libres / 0.0 bloqués
+  USDT : 52.06362966 libres / 0.0 bloqués
+  WIN : 36892.0 libres / 0.0 bloqués
+  TRY : 36932.0 libres / 0.0 bloqués
+  ZAR : 36932.0 libres / 0.0 bloqués
+  UAH : 36932.0 libres / 0.0 bloqués
+  DAI : 20000.0 libres / 0.0 bloqués
+  BRL : 194.0 libres / 0.0 bloqués
+  SHIB : 36892.0 libres / 0.0 bloqués
+  XEC : 36892.0 libres / 0.0 bloqués
+  BTTC : 36892.0 libres / 0.0 bloqués
+  LUNC : 36892.0 libres / 0.0 bloqués
+  PLN : 36932.0 libres / 0.0 bloqués
+  RON : 36932.0 libres / 0.0 bloqués
+  ARS : 36932.0 libres / 0.0 bloqués
+  PEPE : 36892.0 libres / 0.0 bloqués
+  BONK : 36892.0 libres / 0.0 bloqués
+  JPY : 36932.0 libres / 0.0 bloqués
+  MXN : 36932.0 libres / 0.0 bloqués
+  COP : 36932.0 libres / 0.0 bloqués
+  CZK : 36932.0 libres / 0.0 bloqués
+
+📌 Ordres ouverts :
+  Aucun ordre ouvert.
+

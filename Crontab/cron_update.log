@@ -796,3 +796,79 @@ Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data
 
 [2025-09-14 02:15:01.153641] Téléchargement du dataset...
 ✅ Dataset mis à jour dans /data
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data
+  0%|          | 0.00/96.6M [00:00<?, ?B/s]100%|██████████| 96.6M/96.6M [00:00<00:00, 2.99GB/s]
+
+[2025-09-15 20:54:31.517170] Téléchargement du dataset...
+✅ Dataset mis à jour dans /data
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data
+  0%|          | 0.00/96.6M [00:00<?, ?B/s]100%|██████████| 96.6M/96.6M [00:00<00:00, 2.87GB/s]
+
+[2025-09-15 21:02:06.708257] Téléchargement du dataset...
+✅ Dataset mis à jour dans /data
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data
+  0%|          | 0.00/96.6M [00:00<?, ?B/s]100%|██████████| 96.6M/96.6M [00:00<00:00, 1.27GB/s]
+
+[2025-09-16 02:15:01.266522] Téléchargement du dataset...
+✅ Dataset mis à jour dans /data
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data
+  0%|          | 0.00/96.6M [00:00<?, ?B/s]100%|██████████| 96.6M/96.6M [00:00<00:00, 1.20GB/s]
+
+[2025-09-17 02:47:44.460780] Téléchargement du dataset...
+✅ Dataset mis à jour dans /data
+HTTPSConnectionPool(host='www.kaggle.com', port=443): Max retries exceeded with url: /api/v1/datasets/metadata/mczielinski/bitcoin-historical-data (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f1ceba41cf0>: Failed to resolve 'www.kaggle.com' ([Errno -3] Temporary failure in name resolution)"))
+[2025-09-17 09:01:58.716920] Téléchargement du dataset...
+✅ Dataset mis à jour dans /data
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data
+  0%|          | 0.00/96.6M [00:00<?, ?B/s]100%|██████████| 96.6M/96.6M [00:00<00:00, 1.44GB/s]
+
+[2025-09-17 09:04:07.939695] Téléchargement du dataset...
+✅ Dataset mis à jour dans /data
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data
+  0%|          | 0.00/96.6M [00:00<?, ?B/s]100%|██████████| 96.6M/96.6M [00:00<00:00, 2.86GB/s]
+
+[2025-09-17 09:07:02.275089] Téléchargement du dataset...
+✅ Dataset mis à jour dans /data
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data
+  0%|          | 0.00/96.6M [00:00<?, ?B/s]100%|██████████| 96.6M/96.6M [00:00<00:00, 2.79GB/s]
+
+[2025-09-18 21:35:27.107039] Téléchargement du dataset...
+✅ Dataset mis à jour dans /data
+HTTPSConnectionPool(host='www.kaggle.com', port=443): Max retries exceeded with url: /api/v1/datasets/metadata/mczielinski/bitcoin-historical-data (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x7f8716b3dcf0>: Failed to resolve 'www.kaggle.com' ([Errno -3] Temporary failure in name resolution)"))
+[2025-09-19 13:44:48.918154] Téléchargement du dataset...
+✅ Dataset mis à jour dans /data
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data
+  0%|          | 0.00/96.7M [00:00<?, ?B/s]100%|██████████| 96.7M/96.7M [00:00<00:00, 2.92GB/s]
+
+[2025-09-19 13:45:19.032352] Téléchargement du dataset...
+✅ Dataset mis à jour dans /data
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data
+  0%|          | 0.00/96.7M [00:00<?, ?B/s]100%|██████████| 96.7M/96.7M [00:00<00:00, 3.02GB/s]
+
+[2025-09-21 02:15:01.720249] Téléchargement du dataset...
+✅ Dataset mis à jour dans /data
+Dataset URL: https://www.kaggle.com/datasets/mczielinski/bitcoin-historical-data
+License(s): CC-BY-SA-4.0
+Downloading bitcoin-historical-data.zip to ./PROJECT/AICryptoPredictor/data
+  0%|          | 0.00/96.7M [00:00<?, ?B/s]100%|██████████| 96.7M/96.7M [00:00<00:00, 2.96GB/s]
+
+[2025-09-21 20:54:20.592355] Téléchargement du dataset...
+✅ Dataset mis à jour dans /data

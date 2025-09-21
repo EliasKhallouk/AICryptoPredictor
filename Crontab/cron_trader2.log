@@ -44,3 +44,47 @@
 ⚠️ Pas assez de BTC pour vendre.
 
 ✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 0, prix cible = 116281.62000000001
+❌ Signal baisse détecté : on ferme la position.
+✅ Aucun ordre à annuler.
+⚠️ Pas assez de BTC pour vendre.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 116326.9575
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 1542032, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJfa0214e3e9256b210ac6d5', 'transactTime': 1757982365894, 'price': '0.00000000', 'origQty': '0.00045000', 'executedQty': '0.00045000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '51.78523050', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1757982365894, 'fills': [{'price': '115078.29000000', 'qty': '0.00045000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 421059}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 116326.96 USDT pour 0.00045 BTC
+⚠️ Pas assez de BTC pour placer un stop-loss.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 116326.9575
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 1692103, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJ8a65a407a669042950f4de', 'transactTime': 1758070081023, 'price': '0.00000000', 'origQty': '0.00045000', 'executedQty': '0.00045000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '52.48147500', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1758070081023, 'fills': [{'price': '116625.50000000', 'qty': '0.00045000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 461889}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 116326.96 USDT pour 0.00045 BTC
+⚠️ Pas assez de BTC pour placer un stop-loss.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 0, prix cible = 117710.255
+❌ Signal baisse détecté : on ferme la position.
+✅ Aucun ordre à annuler.
+⚠️ Pas assez de BTC pour vendre.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 0, prix cible = 118028.62500000001
+❌ Signal baisse détecté : on ferme la position.
+✅ Aucun ordre à annuler.
+⚠️ Pas assez de BTC pour vendre.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 0, prix cible = 116625.1775
+❌ Signal baisse détecté : on ferme la position.
+✅ Aucun ordre à annuler.
+⚠️ Pas assez de BTC pour vendre.
+
+✅ Fin du script de AutoTrader2.
