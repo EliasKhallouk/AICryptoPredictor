@@ -1,0 +1,15 @@
+The contents of the file `/AICryptoPredictor/AICryptoPredictor/data/btcusd_1-min_data.csv` are not provided in your request. However, I can create a sample CSV structure that you might expect for historical Bitcoin price data. Here is a basic example of what the contents could look like:
+
+Timestamp,Open,High,Low,Close,Volume
+1617235200,58000,58500,57500,58000,1000
+1617235260,58000,58100,57900,58050,1500
+1617235320,58050,58200,57800,58100,1200
+1617235380,58100,58300,58000,58200,1300
+1617235440,58200,58400,57950,58050,1100
+1617235500,58050,58150,57850,57900,900
+1617235560,57900,58000,57700,57800,800
+1617235620,57800,57900,57600,57750,950
+1617235680,57750,57850,57550,57700,1000
+1617235740,57700,57900,57650,57850,1200
+
+This is a simplified version of what the historical Bitcoin price data might look like, with timestamps in Unix format and corresponding open, high, low, close prices, and volume. You can adjust the data as needed for your specific use case.
