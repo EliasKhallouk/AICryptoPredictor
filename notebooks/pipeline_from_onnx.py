@@ -12,7 +12,7 @@ try:
 except Exception:
     SKLEARN_OK = False
 
-DATA_CSV = "./data/btcusdt_1-min_data.csv"
+DATA_CSV = "./data/btcusd_1-min_data.csv"
 SIGNAL_OUT = "/home/elias/PROJECT/AICryptoPredictor/Output/signal.txt"
 RESULTS_DIR = "/home/elias/PROJECT/AICryptoPredictor/results"
 POURCENT_MARGE = 1.0075
