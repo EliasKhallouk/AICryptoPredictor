@@ -1,16 +1,18 @@
 import pandas as pd
 import os
 from sklearn.model_selection import train_test_split
-from tensorflow.keras.layers import Dense, Dropout
 from sklearn.metrics import classification_report, precision_score, recall_score
-from keras import Input, Model
-from keras.layers import Dense, BatchNormalization
-from keras.optimizers import SGD
-from keras.callbacks import EarlyStopping
 from datetime import datetime
-import tensorflow as tf
 import numpy as np
 import random
+
+# Utilise le runtime léger (pas besoin de tensorflow complet)
+try:
+    import tflite_runtime.interpreter as tflite
+except ImportError:
+    # fallback si tflite-runtime non dispo et que tensorflow est installé
+    import tensorflow as tf
+    tflite = tf.lite
 
 print("📂 Chargement du dataset...")
 file_path = os.path.join("/home/elias/PROJECT/AICryptoPredictor/data", "btcusd_1-min_data.csv")
@@ -54,83 +56,106 @@ btc_daily["Target"] = (
     ((btc_daily["High"].shift(-1) > (btc_daily["Close"] * POURCENT_MARGE)) |
      (btc_daily["High"].shift(-2) > (btc_daily["Close"] * POURCENT_MARGE)))
 ).astype(int)
-btc_daily = btc_daily.dropna()
+
+btc_daily.dropna(inplace=True)
 
 split_date = '2023-05-01'
 train = btc_daily[btc_daily.index < split_date]
 test = btc_daily[btc_daily.index >= split_date]
 
-X_train = train.drop(columns=["Target"])
-X_test = test.drop(columns=["Target"])
+# Features EXACTEMENT dans le même ordre qu’au training (14 colonnes)
+feature_cols = [
+    "Open", "High", "Low", "Close", "Volume",
+    "Return", "MA7", "MA30", "Volatility",
+    "RSI", "MACD", "Signal",
+    "Bollinger_Upper", "Bollinger_Lower"
+]
+
+X_train = train[feature_cols]
+X_test = test[feature_cols]
 y_train = train["Target"]
 y_test = test["Target"]
 
+# Validation pour éventuels besoins, mais l’inférence ne s’en sert pas
 X_train_split, X_val, y_train_split, y_val = train_test_split(X_train, y_train, test_size=0.2, random_state=42)
 
 SEED = 73
 np.random.seed(SEED)
 random.seed(SEED)
-tf.random.set_seed(SEED)
 
-inputs = Input(shape=(14,))
-x = Dense(256, activation='relu')(inputs)
-x = BatchNormalization()(x)
-x = Dropout(0.2)(x)
+# Chargement du modèle TFLite
+model_path = os.path.join("/home/elias/PROJECT/AICryptoPredictor/notebooks", "model.tflite")
+if not os.path.exists(model_path):
+    raise FileNotFoundError(f"Fichier TFLite introuvable: {model_path}. Convertis ton modèle Keras en .tflite sur une autre machine, puis copie-le ici.")
 
-x = Dense(1024, activation='relu')(x)
-x = BatchNormalization()(x)
-x = Dropout(0.2)(x)
+print("🧠 Chargement du modèle TFLite...")
+interpreter = tflite.Interpreter(model_path=model_path)
+interpreter.allocate_tensors()
 
-x = Dense(1024, activation='relu')(x)
-x = BatchNormalization()(x)
-x = Dropout(0.2)(x)
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
 
-x = Dense(256, activation='relu')(x)
-x = BatchNormalization()(x)
-x = Dropout(0.2)(x)
+# Vérifie forme d’entrée attendue (doit être [None, 14])
+expected_input_shape = input_details[0]["shape"]
+if expected_input_shape[-1] != len(feature_cols):
+    raise ValueError(f"Le modèle TFLite attend {expected_input_shape[-1]} features, mais on en fournit {len(feature_cols)}.")
 
-x = Dense(128, activation='relu')(x)
-x = BatchNormalization()(x)
-x = Dropout(0.2)(x)
+# Préparation des données au bon dtype
+input_dtype = input_details[0]["dtype"]  # souvent float32
+X_test_np = X_test.astype(np.float32).values
+# Ajuste la forme si le modèle attend une batch dimension
+if len(expected_input_shape) == 2:
+    # [batch, features] -> OK
+    pass
+else:
+    # Si le modèle est différent, adapter ici
+    X_test_np = X_test_np.reshape((-1,) + tuple(expected_input_shape[1:]))
 
-x = Dense(64, activation='relu')(x)
-x = BatchNormalization()(x)
-x = Dropout(0.2)(x)
+print("⚡ Inférence TFLite...")
+# Inférence par batch pour éviter de saturer de vieilles machines
+batch_size = 256
+y_pred_proba_list = []
 
-outputs = Dense(1, activation='sigmoid')(x)
-model = Model(inputs=inputs, outputs=outputs)
+for i in range(0, len(X_test_np), batch_size):
+    batch = X_test_np[i:i+batch_size]
+    # Définir le tenseur d'entrée
+    interpreter.set_tensor(input_details[0]["index"], batch)
+    interpreter.invoke()
+    # Récupérer la sortie
+    out = interpreter.get_tensor(output_details[0]["index"])
+    y_pred_proba_list.append(out)
 
-model.compile(optimizer=SGD(learning_rate=1e-4, momentum=0.88),
-              loss='binary_crossentropy', 
-              metrics=['accuracy'])
-
-early_stopping = EarlyStopping(monitor='val_loss', patience=20, restore_best_weights=True)
-
-print("⚡ Entraînement du modèle...")
-history = model.fit(
-    X_train_split, y_train_split,
-    epochs=100, batch_size=32,
-    validation_data=(X_val, y_val),
-    callbacks=[early_stopping],
-    class_weight={0: 1, 1: 2}
-)
-
-print("📊 Évaluation...")
-y_pred_proba = model.predict(X_test)
+y_pred_proba = np.vstack(y_pred_proba_list)
 threshold = 0.789
 y_pred = (y_pred_proba > threshold).astype(int)
 
+print("📊 Évaluation...")
 report = classification_report(y_test, y_pred, digits=4)
 precision = precision_score(y_test, y_pred)
 recall = recall_score(y_test, y_pred)
 
-# Convertir le modèle en TensorFlow Lite
-converter = tf.lite.TFLiteConverter.from_keras_model(model)
-tflite_model = converter.convert()
+final_prediction = int(y_pred[-1][0])
+output_file = f"/home/elias/PROJECT/AICryptoPredictor/results/prediction_{datetime.now().strftime('%Y%m%d_%H')}.txt"
+last_date = btc_daily.index[-1].strftime("%Y-%m-%d")
 
-# Sauvegarder le modèle TensorFlow Lite
-tflite_model_file = "/home/elias/PROJECT/AICryptoPredictor/results/model.tflite"
-with open(tflite_model_file, "wb") as f:
-    f.write(tflite_model)
+os.makedirs("/home/elias/PROJECT/AICryptoPredictor/results", exist_ok=True)
+with open(output_file, "w") as f:
+    f.write(f"Dernière date du DataSet: {last_date}\n\n")
+    f.write("Resultat de la pipeline 7 (TFLite)\n\n")
+    f.write(f"Augmentation prévue de: {POURCENT_MARGE*100}% \n\n")
+    f.write(f"Prediction finale (0 ou 1): {final_prediction}\n")
+    f.write(f"Prix de cloture du {last_date} est à {btc_daily['Close'].iloc[-1]}\n")
+    f.write(f"Prix du High du lendemain est estimé à {btc_daily['Close'].iloc[-1] * POURCENT_MARGE}\n\n")
+    f.write("Rapport de classification:\n")
+    f.write(report + "\n")
+    f.write(f"Precision classe 1: {precision}\n")
+    f.write(f"Recall classe 1: {recall}\n")
+print(f"✅ Résultats sauvegardés dans {output_file}")
 
-print(f"✅ Modèle TensorFlow Lite sauvegardé dans {tflite_model_file}")
+signal_file = "/home/elias/PROJECT/AICryptoPredictor/Output/signal.txt"
+os.makedirs("/home/elias/PROJECT/AICryptoPredictor/Output", exist_ok=True)
+with open(signal_file, "w") as f:
+    f.write(str(final_prediction))
+    f.write("\n")
+    f.write(str(btc_daily['Close'].iloc[-1] * POURCENT_MARGE))
+print(f"✅ Signal sauvegardé dans {signal_file}")
