@@ -1,6 +1,6 @@
 Dernière date du DataSet: 2025-12-26
 
-Resultat de la pipeline 2 
+Resultat de la pipeline 2 (ONNX export)
 
 Augmentation prévue de: 100.75% 
 
@@ -11,12 +11,12 @@ Prix du High du lendemain est estimé à 87949.71250000001
 Rapport de classification:
               precision    recall  f1-score   support
 
-           0     0.3354    0.2624    0.2944       202
-           1     0.8167    0.8635    0.8394       769
+           0     0.0000    0.0000    0.0000       202
+           1     0.7920    1.0000    0.8839       769
 
-    accuracy                         0.7384       971
-   macro avg     0.5761    0.5629    0.5669       971
-weighted avg     0.7166    0.7384    0.7261       971
+    accuracy                         0.7920       971
+   macro avg     0.3960    0.5000    0.4420       971
+weighted avg     0.6272    0.7920    0.7000       971
 
-Precision classe 1: 0.8167281672816729
-Recall classe 1: 0.8634590377113134
+Precision classe 1: 0.791967044284243
+Recall classe 1: 1.0
