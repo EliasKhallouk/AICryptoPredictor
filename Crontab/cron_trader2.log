@@ -88,3 +88,203 @@
 ⚠️ Pas assez de BTC pour vendre.
 
 ✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 0, prix cible = 116182.88500000001
+❌ Signal baisse détecté : on ferme la position.
+✅ Aucun ordre à annuler.
+⚠️ Pas assez de BTC pour vendre.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 110543.9075
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 3176288, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJde5f0e57efbb66a494c270', 'transactTime': 1758932763942, 'price': '0.00000000', 'origQty': '0.00048000', 'executedQty': '0.00048000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '52.56000000', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1758932763942, 'fills': [{'price': '109500.00000000', 'qty': '0.00048000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 831768}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 110543.91 USDT pour 0.00048 BTC
+⚠️ Pas assez de BTC pour placer un stop-loss.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 0, prix cible = 123360.315
+❌ Signal baisse détecté : on ferme la position.
+✅ Aucun ordre à annuler.
+✅ Vente immédiate 0.999 BTC @ 122383.42 USDT
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 113958.32500000001
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 1851458, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJea905566538aa7ed3d9ecc', 'transactTime': 1760142363637, 'price': '0.00000000', 'origQty': '1.17845000', 'executedQty': '1.17845000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '132260.08322800', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1760142363637, 'fills': [{'price': '112232.24000000', 'qty': '1.17845000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 736500}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 113958.33 USDT pour 1.17827 BTC
+❌ Erreur placement stop-loss : APIError(code=-1116): Invalid orderType.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 113958.32500000001
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 2041060, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJ989a424f920705a4494217', 'transactTime': 1760229453210, 'price': '0.00000000', 'origQty': '0.26622000', 'executedQty': '0.26622000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '29342.31848820', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1760229453210, 'fills': [{'price': '110218.31000000', 'qty': '0.26622000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 791498}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 113958.33 USDT pour 0.26595 BTC
+❌ Erreur placement stop-loss : APIError(code=-1116): Invalid orderType.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 108042.285
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 3917203, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJf3c1a787449e9533f2cd25', 'transactTime': 1760833562913, 'price': '0.00000000', 'origQty': '1.26379000', 'executedQty': '1.26379000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '135398.68186790', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1760833562913, 'fills': [{'price': '107137.01000000', 'qty': '1.26379000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 1566000}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 108042.29 USDT pour 1.26253 BTC
+❌ Erreur placement stop-loss : APIError(code=-1116): Invalid orderType.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 111839.5525
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 6297818, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJa8b970b77ea49d27df031a', 'transactTime': 1761351963858, 'price': '0.00000000', 'origQty': '1.23160000', 'executedQty': '1.23160000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '136539.09248800', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1761351963858, 'fills': [{'price': '110863.18000000', 'qty': '1.23160000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 2962815}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 111839.55 USDT pour 1.23037 BTC
+❌ Erreur placement stop-loss : APIError(code=-1116): Invalid orderType.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 112474.27750000001
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 6483913, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJ8da5b749d7fa27890a3d53', 'transactTime': 1761438364296, 'price': '0.00000000', 'origQty': '1.23266000', 'executedQty': '1.23266000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '137603.52454420', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1761438364296, 'fills': [{'price': '111631.37000000', 'qty': '1.23266000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 3030941}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 112474.28 USDT pour 1.23143 BTC
+❌ Erreur placement stop-loss : APIError(code=-1116): Invalid orderType.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 114979.93000000001
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 7064465, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJ3ca4a7e60cb0173a61e269', 'transactTime': 1761614763883, 'price': '0.00000000', 'origQty': '1.21524000', 'executedQty': '1.21524000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '138773.52974160', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1761614763883, 'fills': [{'price': '114194.34000000', 'qty': '1.21524000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 3315068}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 114979.93 USDT pour 1.21402 BTC
+❌ Erreur placement stop-loss : APIError(code=-1116): Invalid orderType.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 110380.6925
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 8564817, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJ750ca6811c793055ba8190', 'transactTime': 1761960364358, 'price': '0.00000000', 'origQty': '1.27288000', 'executedQty': '1.27288000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '139724.58493840', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1761960364358, 'fills': [{'price': '109770.43000000', 'qty': '1.27288000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 3985372}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 110380.69 USDT pour 1.27161 BTC
+❌ Erreur placement stop-loss : APIError(code=-1116): Invalid orderType.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 110380.6925
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 8743345, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJ1fac2f6ce8459b88d0931f', 'transactTime': 1762046763129, 'price': '0.00000000', 'origQty': '1.27682000', 'executedQty': '1.27682000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '140498.02967720', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1762046763129, 'fills': [{'price': '110037.46000000', 'qty': '1.27682000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 4043481}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 110380.69 USDT pour 1.27554 BTC
+❌ Erreur placement stop-loss : APIError(code=-1116): Invalid orderType.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 96248.49
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 1918676, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJ6bd6f6e5c6bfd1425bd87a', 'transactTime': 1763256363998, 'price': '0.00000000', 'origQty': '0.10490000', 'executedQty': '0.10490000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '9999.16555700', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1763256363998, 'fills': [{'price': '95320.93000000', 'qty': '0.10490000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 674030}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 96248.49 USDT pour 1.1038 BTC
+❌ Erreur placement stop-loss : APIError(code=-1116): Invalid orderType.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 92121.77
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 2702357, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJc88ceaabe6e6fa7f04078c', 'transactTime': 1763601964803, 'price': '0.00000000', 'origQty': '1.15227000', 'executedQty': '1.15227000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '106342.14562020', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1763601964803, 'fills': [{'price': '92289.26000000', 'qty': '1.15227000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 943705}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 92121.77 USDT pour 1.15112 BTC
+❌ Erreur placement stop-loss : APIError(code=-1116): Invalid orderType.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 85280.845
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 3419109, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJ22c056a024488fc82517d7', 'transactTime': 1763861164339, 'price': '0.00000000', 'origQty': '1.24462000', 'executedQty': '1.24462000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '106340.34524620', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1763861164339, 'fills': [{'price': '85440.01000000', 'qty': '1.24462000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 1274803}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 85280.85 USDT pour 1.24338 BTC
+❌ Erreur placement stop-loss : APIError(code=-1116): Invalid orderType.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 91513.24
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 4878886, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJ27d40f2113a0337bb0691b', 'transactTime': 1764465963752, 'price': '0.00000000', 'origQty': '1.16925000', 'executedQty': '1.16925000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '106338.31818750', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1764465963752, 'fills': [{'price': '90945.75000000', 'qty': '1.16925000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 1687576}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 91513.24 USDT pour 1.16808 BTC
+❌ Erreur placement stop-loss : APIError(code=-1116): Invalid orderType.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 92747.4275
+🚀 Signal d'achat détecté.
+Traceback (most recent call last):
+  File "/home/elias/PROJECT/AICryptoPredictor/notebooks/AutoTrader2.py", line 329, in <module>
+    strategie()
+  File "/home/elias/PROJECT/AICryptoPredictor/notebooks/AutoTrader2.py", line 266, in strategie
+    prix_achat = buy_btc()
+  File "/home/elias/PROJECT/AICryptoPredictor/notebooks/AutoTrader2.py", line 66, in buy_btc
+    order = client.order_market_buy(symbol=PAIR, quantity=qty)
+  File "/home/elias/anaconda3/envs/crypto_predictor/lib/python3.10/site-packages/binance/client.py", line 1539, in order_market_buy
+    return self.order_market(**params)
+  File "/home/elias/anaconda3/envs/crypto_predictor/lib/python3.10/site-packages/binance/client.py", line 1513, in order_market
+    return self.create_order(**params)
+  File "/home/elias/anaconda3/envs/crypto_predictor/lib/python3.10/site-packages/binance/client.py", line 1382, in create_order
+    return self._post("order", True, data=params)
+  File "/home/elias/anaconda3/envs/crypto_predictor/lib/python3.10/site-packages/binance/client.py", line 185, in _post
+    return self._request_api("post", path, signed, version, **kwargs)
+  File "/home/elias/anaconda3/envs/crypto_predictor/lib/python3.10/site-packages/binance/client.py", line 117, in _request_api
+    return self._request(method, uri, signed, **kwargs)
+  File "/home/elias/anaconda3/envs/crypto_predictor/lib/python3.10/site-packages/binance/client.py", line 89, in _request
+    return self._handle_response(self.response)
+  File "/home/elias/anaconda3/envs/crypto_predictor/lib/python3.10/site-packages/binance/client.py", line 98, in _handle_response
+    raise BinanceAPIException(response, response.status_code, response.text)
+binance.exceptions.BinanceAPIException: APIError(code=-2010): Account has insufficient balance for requested action.
+
+📊 Signal IA = 1, prix cible = 92747.4275
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 14148167, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJ4da20fd97189ed18af453f', 'transactTime': 1766024175932, 'price': '0.00000000', 'origQty': '1.23706000', 'executedQty': '1.23706000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '106999.34388220', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1766024175932, 'fills': [{'price': '86494.87000000', 'qty': '1.23706000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 5388625}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 92747.43 USDT pour 1.23582 BTC
+❌ Erreur placement stop-loss : APIError(code=-1116): Invalid orderType.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 92747.4275
+🚀 Signal d'achat détecté.
+Traceback (most recent call last):
+  File "/home/elias/PROJECT/AICryptoPredictor/notebooks/AutoTrader2.py", line 329, in <module>
+    strategie()
+  File "/home/elias/PROJECT/AICryptoPredictor/notebooks/AutoTrader2.py", line 266, in strategie
+    prix_achat = buy_btc()
+  File "/home/elias/PROJECT/AICryptoPredictor/notebooks/AutoTrader2.py", line 66, in buy_btc
+    order = client.order_market_buy(symbol=PAIR, quantity=qty)
+  File "/home/elias/anaconda3/envs/crypto_predictor/lib/python3.10/site-packages/binance/client.py", line 1539, in order_market_buy
+    return self.order_market(**params)
+  File "/home/elias/anaconda3/envs/crypto_predictor/lib/python3.10/site-packages/binance/client.py", line 1513, in order_market
+    return self.create_order(**params)
+  File "/home/elias/anaconda3/envs/crypto_predictor/lib/python3.10/site-packages/binance/client.py", line 1382, in create_order
+    return self._post("order", True, data=params)
+  File "/home/elias/anaconda3/envs/crypto_predictor/lib/python3.10/site-packages/binance/client.py", line 185, in _post
+    return self._request_api("post", path, signed, version, **kwargs)
+  File "/home/elias/anaconda3/envs/crypto_predictor/lib/python3.10/site-packages/binance/client.py", line 117, in _request_api
+    return self._request(method, uri, signed, **kwargs)
+  File "/home/elias/anaconda3/envs/crypto_predictor/lib/python3.10/site-packages/binance/client.py", line 89, in _request
+    return self._handle_response(self.response)
+  File "/home/elias/anaconda3/envs/crypto_predictor/lib/python3.10/site-packages/binance/client.py", line 98, in _handle_response
+    raise BinanceAPIException(response, response.status_code, response.text)
+binance.exceptions.BinanceAPIException: APIError(code=-2010): Account has insufficient balance for requested action.
+
+📊 Signal IA = 1, prix cible = 88262.0375
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 15496751, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJ745ec8bbd7820c0de02902', 'transactTime': 1766625963962, 'price': '0.00000000', 'origQty': '1.30808000', 'executedQty': '1.30808000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '114724.84246080', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1766625963962, 'fills': [{'price': '87704.76000000', 'qty': '1.30808000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 6003445}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 88262.04 USDT pour 1.30677 BTC
+❌ Erreur placement stop-loss : APIError(code=-1116): Invalid orderType.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 87881.2025
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 15640935, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJ2010dddba7ccf69d3b0d20', 'transactTime': 1766712363846, 'price': '0.00000000', 'origQty': '1.32200000', 'executedQty': '1.32200000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '115451.05320000', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1766712363846, 'fills': [{'price': '87330.60000000', 'qty': '1.32200000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 6043147}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 87881.2 USDT pour 1.32068 BTC
+❌ Erreur placement stop-loss : APIError(code=-1116): Invalid orderType.
+
+✅ Fin du script de AutoTrader2.
+
+📊 Signal IA = 1, prix cible = 87949.71250000001
+🚀 Signal d'achat détecté.
+✅ Achat BTC exécuté : {'symbol': 'BTCUSDT', 'orderId': 15848951, 'orderListId': -1, 'clientOrderId': 'x-HNA2TXFJ5de173007990384fa25ea7', 'transactTime': 1766798764391, 'price': '0.00000000', 'origQty': '1.32958000', 'executedQty': '1.32958000', 'origQuoteOrderQty': '0.00000000', 'cummulativeQuoteQty': '116176.05453580', 'status': 'FILLED', 'timeInForce': 'GTC', 'type': 'MARKET', 'side': 'BUY', 'workingTime': 1766798764391, 'fills': [{'price': '87378.01000000', 'qty': '1.32958000', 'commission': '0.00000000', 'commissionAsset': 'BTC', 'tradeId': 6115458}], 'selfTradePreventionMode': 'EXPIRE_MAKER'}
+✅ Ordre de vente LIMIT placé à 87949.71 USDT pour 1.32825 BTC
+❌ Erreur placement stop-loss : APIError(code=-1116): Invalid orderType.
+
+✅ Fin du script de AutoTrader2.
