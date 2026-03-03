@@ -17,6 +17,7 @@ SIGNAL_OUT = "/home/elias/PROJECT/AICryptoPredictor/Output/signal.txt"
 RESULTS_DIR = "/home/elias/PROJECT/AICryptoPredictor/results"
 POURCENT_MARGE = 1.0075
 THRESHOLD = 0.789
+SPLIT_DATE = "2023-05-01"  # aligner avec pipeline2.py
 
 def build_features_and_target(df):
     required = ["Timestamp", "Open", "High", "Low", "Close", "Volume"]
@@ -63,47 +64,48 @@ def build_features_and_target(df):
     daily["Bollinger_Upper"] = ma20 + 2 * std20
     daily["Bollinger_Lower"] = ma20 - 2 * std20
 
-    # Target comme pipeline2
+    # === Extras identiques à l'export ===
+    eps = 1e-9
+    prev_close = daily["Close"].shift(1)
+    tr1 = daily["High"] - daily["Low"]
+    tr2 = (daily["High"] - prev_close).abs()
+    tr3 = (daily["Low"] - prev_close).abs()
+    daily["TrueRange"] = np.max(np.vstack([tr1.values, tr2.values, tr3.values]), axis=0)
+    daily["ATR14"] = daily["TrueRange"].rolling(14).mean()
+    daily["MACD_hist"] = daily["MACD"] - daily["Signal"]
+    daily["Volume_z20"] = (
+        (daily["Volume"] - daily["Volume"].rolling(20).mean()) /
+        (daily["Volume"].rolling(20).std() + eps)
+    )
+
+    # Target comme pipeline2/export
     target = (
         (daily["High"].shift(-1) > (daily["Close"] * POURCENT_MARGE)) |
         (daily["High"].shift(-2) > (daily["Close"] * POURCENT_MARGE))
     ).astype(int)
 
-    cols_14 = [
+    # Colonnes EXACTES utilisées à l'entraînement ONNX (ordre identique)
+    cols_export = [
         "Open", "High", "Low", "Close", "Volume",
         "Return", "MA7", "MA30", "Volatility", "RSI",
-        "MACD", "Signal", "Bollinger_Upper", "Bollinger_Lower"
+        "MACD", "Signal", "Bollinger_Upper", "Bollinger_Lower",
+        "TrueRange", "ATR14", "MACD_hist", "Volume_z20"
     ]
-    X = daily[cols_14].dropna()
 
-    # Aligner y sur X et retirer NaN
-    y = target.reindex(X.index).dropna()
-    X = X.loc[y.index]
+    daily = daily.dropna()
+    X = daily[cols_export]
+    y = target.reindex(X.index)
 
     return X, y, daily
 
 def ensure_features_count(df_features, expected_feat):
-    # Si le modèle attend >14, compléter avec 4 features cohérentes
-    if expected_feat is not None and df_features.shape[1] < expected_feat:
-        close = df_features["Close"]
-        open_ = df_features["Open"]
-        eps = 1e-9
-        rng = (df_features["High"] - df_features["Low"]).replace(0, eps)
-
-        if "MACD" in df_features.columns and "Signal" in df_features.columns and "MACD_hist" not in df_features.columns:
-            df_features["MACD_hist"] = df_features["MACD"] - df_features["Signal"]
-        if "Range_pct" not in df_features.columns:
-            df_features["Range_pct"] = (df_features["High"] - df_features["Low"]) / (close + eps)
-        if "Position_in_range" not in df_features.columns:
-            df_features["Position_in_range"] = (close - df_features["Low"]) / (rng + eps)
-        body = (close - open_).abs()
-        if "Body_pct" not in df_features.columns:
-            df_features["Body_pct"] = body / (rng + eps)
-
-        df_features = df_features.dropna()
-
-    if expected_feat is not None and df_features.shape[1] > expected_feat:
-        df_features = df_features.iloc[:, :expected_feat]
+    # Avec l'alignement ci-dessus, cette fonction devient une sécurité pour ONNX
+    if expected_feat is not None:
+        if df_features.shape[1] > expected_feat:
+            df_features = df_features.iloc[:, :expected_feat]
+        elif df_features.shape[1] < expected_feat:
+            # si l'ONNX attend moins de colonnes (ex: 14), tronquer la liste aux 14 premières
+            df_features = df_features.iloc[:, :expected_feat]
     return df_features
 
 def run_inference(sess, input_name, X_np, expected_batch):
@@ -146,18 +148,27 @@ def main():
     expected_batch = expected_shape[0] if isinstance(expected_shape[0], int) else None
     expected_feat = expected_shape[1] if isinstance(expected_shape[1], int) else None
 
-    # Adapter le nombre de features
+    # Adapter le nombre de features (principalement tronquer si nécessaire)
     X_all = ensure_features_count(X_all, expected_feat)
 
-    # Numpy
-    X_np = X_all.to_numpy(dtype=np.float32)
+    # Split identique à pipeline2/export pour rapport
+    X_test = X_all[X_all.index >= SPLIT_DATE]
+    y_test = y_all[y_all.index >= SPLIT_DATE]
+    # fallback si vide
+    if X_test.empty or y_test.empty:
+        X_test = X_all
+        y_test = y_all
 
-    # Probabilités pour tout l’ensemble (pour rapport)
-    probs_all = run_inference(sess, input_name, X_np, expected_batch).astype(np.float32).reshape(-1)
-    preds_all = (probs_all > THRESHOLD).astype(int)
+    # Numpy (pour tout et pour test)
+    X_np_all = X_all.to_numpy(dtype=np.float32)
+    X_np_test = X_test.to_numpy(dtype=np.float32)
 
-    # Dernière ligne pour le signal et le fichier prediction
-    last_row = X_np[-1:].astype(np.float32)
+    # Probabilités pour le TEST (pour rapport comparable à pipeline2.py)
+    probs_test = run_inference(sess, input_name, X_np_test, expected_batch).astype(np.float32).reshape(-1)
+    preds_test = (probs_test > THRESHOLD).astype(int)
+
+    # Dernière ligne pour le signal et le fichier prediction (inchangé)
+    last_row = X_np_all[-1:].astype(np.float32)
     prob_last = float(run_inference(sess, input_name, last_row, expected_batch).reshape(-1)[0])
     pred_last = int(prob_last > THRESHOLD)
 
@@ -172,11 +183,11 @@ def main():
         f.write("\n")
         f.write(str(next_high_est))
 
-    # Rapport de classification identique
-    if SKLEARN_OK and len(y_all) == len(preds_all) and len(y_all) > 0:
-        report = classification_report(y_all, preds_all, digits=4)
-        precision = precision_score(y_all, preds_all, pos_label=1, zero_division=0)
-        recall = recall_score(y_all, preds_all, pos_label=1, zero_division=0)
+    # Rapport de classification aligné sur le split
+    if SKLEARN_OK and len(y_test) == len(preds_test) and len(y_test) > 0:
+        report = classification_report(y_test, preds_test, digits=4)
+        precision = precision_score(y_test, preds_test, pos_label=1, zero_division=0)
+        recall = recall_score(y_test, preds_test, pos_label=1, zero_division=0)
     else:
         report = "sklearn non disponible ou tailles incohérentes.\n"
         precision = 0.0
