@@ -32,7 +32,7 @@ import seaborn as sns
 
 THRESHOLD = 0.65  # Seuil optimisé
 TARGET_GAIN = 0.025  # +2.5% (gain significatif)
-TARGET_HORIZON = 48  # 48 heures
+TARGET_HORIZON = 24  # 48 heures
 RANDOM_STATE = 42
 
 # =============================================================================
@@ -220,8 +220,11 @@ def create_features(df):
 def create_target(df, gain_threshold=TARGET_GAIN, horizon=TARGET_HORIZON):
     """
     Target simplifié pour max précision:
-    1 si High atteint +2.5% dans les 48h suivantes
+    1 si High atteint +2.5% dans les N heures suivantes
     0 sinon
+    
+    IMPORTANT: Les dernières lignes n'ont PAS de target (on ne connaît pas le futur)
+    mais on les garde pour pouvoir prédire sur les données les plus récentes
     """
     print("🎯 Création du target optimisé...")
     
@@ -230,18 +233,21 @@ def create_target(df, gain_threshold=TARGET_GAIN, horizon=TARGET_HORIZON):
     # Prix maximum futur sur N heures
     btc['Future_Max'] = btc['High'].shift(-1).rolling(horizon).max()
     
-    # Target binaire
-    btc['Target'] = (btc['Future_Max'] >= btc['Close'] * (1 + gain_threshold)).astype(int)
+    # Target binaire (sera NaN pour les dernières lignes)
+    btc['Target'] = (btc['Future_Max'] >= btc['Close'] * (1 + gain_threshold)).astype(float)
     
-    # Supprimer les dernières lignes
-    btc = btc.iloc[:-horizon]
-    btc = btc.dropna(subset=['Target'])
+    # Supprimer la colonne temporaire
     btc = btc.drop(columns=['Future_Max'])
     
-    pos = btc['Target'].sum()
-    total = len(btc)
-    print(f"✅ Target: {pos} positifs / {total} ({pos/total*100:.2f}%)")
+    # Compter les targets valides (non-NaN)
+    valid_targets = btc['Target'].notna()
+    pos = btc.loc[valid_targets, 'Target'].sum()
+    total = valid_targets.sum()
+    
+    print(f"✅ Target: {pos:.0f} positifs / {total:.0f} ({pos/total*100:.2f}%)")
     print(f"   Gain cible: +{gain_threshold*100}% sur {horizon}h")
+    print(f"   ⚠️  Dernières {horizon}h sans target (pour prédiction future)")
+    
     return btc
 
 
@@ -250,9 +256,10 @@ def create_target(df, gain_threshold=TARGET_GAIN, horizon=TARGET_HORIZON):
 # =============================================================================
 
 def temporal_split(df, split_date='2023-05-01'):
-    """Split temporel"""
+    """Split temporel - garde les lignes sans target pour prédiction future"""
     print(f"✂️ Split à {split_date}")
     
+    # Séparer train/test en gardant TOUTES les lignes (même celles sans target)
     train = df[df.index < split_date].copy()
     test = df[df.index >= split_date].copy()
     
@@ -263,9 +270,16 @@ def temporal_split(df, split_date='2023-05-01'):
     X_test = test[feature_cols]
     y_test = test['Target']
     
-    print(f"✅ Train: {len(X_train)} | Test: {len(X_test)}")
-    print(f"   Train+: {y_train.sum()} ({y_train.mean()*100:.2f}%)")
-    print(f"   Test+: {y_test.sum()} ({y_test.mean()*100:.2f}%)")
+    # Filtrer les NaN uniquement pour l'entraînement
+    train_valid = y_train.notna()
+    X_train = X_train[train_valid]
+    y_train = y_train[train_valid]
+    
+    # Pour le test, on garde aussi les lignes sans target (pour prédiction)
+    test_valid = y_test.notna()
+    print(f"✅ Train: {len(X_train)} | Test: {test_valid.sum():.0f} (+ {(~test_valid).sum():.0f} sans target)")
+    print(f"   Train+: {y_train.sum():.0f} ({y_train.mean()*100:.2f}%)")
+    print(f"   Test+: {y_test[test_valid].sum():.0f} ({y_test[test_valid].mean()*100:.2f}%)")
     
     return X_train, X_test, y_train, y_test
 
@@ -337,20 +351,28 @@ def predict_with_threshold(model, X_test, threshold=THRESHOLD):
 # =============================================================================
 
 def evaluate_model(y_test, y_pred, y_proba):
-    """Évaluation"""
+    """Évaluation - filtre les NaN dans y_test"""
     print("\n" + "="*70)
     print("📊 ÉVALUATION")
     print("="*70)
     
+    # Filtrer les lignes avec target valide
+    valid_mask = y_test.notna()
+    y_test_valid = y_test[valid_mask]
+    y_pred_valid = y_pred[valid_mask]
+    y_proba_valid = y_proba[valid_mask]
+    
+    print(f"\n📌 Évaluation sur {len(y_test_valid)} samples avec target")
+    
     print("\n📋 Classification Report:")
-    report = classification_report(y_test, y_pred, digits=4)
+    report = classification_report(y_test_valid, y_pred_valid, digits=4)
     print(report)
     
-    precision = precision_score(y_test, y_pred, zero_division=0)
-    recall = recall_score(y_test, y_pred, zero_division=0)
+    precision = precision_score(y_test_valid, y_pred_valid, zero_division=0)
+    recall = recall_score(y_test_valid, y_pred_valid, zero_division=0)
     
     try:
-        auc = roc_auc_score(y_test, y_proba)
+        auc = roc_auc_score(y_test_valid, y_proba_valid)
         print(f"🎯 AUC-ROC: {auc:.4f}")
     except:
         auc = None
@@ -358,7 +380,7 @@ def evaluate_model(y_test, y_pred, y_proba):
     print(f"🎯 Precision: {precision:.4f}")
     print(f"🎯 Recall: {recall:.4f}")
     
-    cm = confusion_matrix(y_test, y_pred)
+    cm = confusion_matrix(y_test_valid, y_pred_valid)
     print(f"\n📊 Confusion Matrix:")
     print(f"    TN={cm[0,0]:5d}  FP={cm[0,1]:5d}")
     print(f"    FN={cm[1,0]:5d}  TP={cm[1,1]:5d}")
@@ -506,6 +528,10 @@ def main():
     btc = load_data()
     btc_hourly = preprocess_data(btc)
     btc_hourly = create_features(btc_hourly)
+    
+    # Garder une copie AVANT le target pour avoir les données les plus récentes
+    btc_hourly_full = btc_hourly.copy()
+    
     btc_hourly = create_target(btc_hourly)
     
     X_train, X_test, y_train, y_test = temporal_split(btc_hourly)
@@ -515,7 +541,9 @@ def main():
     
     metrics = evaluate_model(y_test, y_pred, y_proba)
     plot_diagnostics(model, X_train, y_proba, metrics)
-    save_prediction(y_pred, y_proba, btc_hourly, metrics)
+    
+    # Utiliser btc_hourly_full pour avoir la dernière date disponible
+    save_prediction(y_pred, y_proba, btc_hourly_full, metrics)
     
     print("\n" + "="*70)
     print("✅ PIPELINE TERMINÉE")
