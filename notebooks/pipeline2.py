@@ -60,7 +60,7 @@ btc_daily['Bollinger_Upper'] = ma20 + 2*std20
 btc_daily['Bollinger_Lower'] = ma20 - 2*std20
 
 
-POURCENT_MARGE = 1.0075
+POURCENT_MARGE = 1.01
 # Créer la colonne Target : 1 si le prix du high de demain est supérieur de 0.5% à l'ouverture d'aujourd'hui, sinon 0
 btc_daily["Target"] = (
     ((btc_daily["High"].shift(-1) > (btc_daily["Close"] * POURCENT_MARGE)) |
