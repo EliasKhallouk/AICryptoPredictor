@@ -255,42 +255,50 @@ def create_target(df, gain_threshold=TARGET_GAIN, horizon=TARGET_HORIZON):
 # 5. SPLIT
 # =============================================================================
 
-def temporal_split(df, split_date='2023-05-01'):
-    """Split temporel - garde les lignes sans target pour prédiction future"""
-    print(f"✂️ Split à {split_date}")
+def temporal_split(df, split_date='2023-05-01', val_date='2024-01-01'):
+    """Split temporel SANS FUITE: train/validation/test séparés"""
+    print(f"✂️ Split temporel: Train < {split_date} | Validation [{split_date}, {val_date}) | Test >= {val_date}")
     
-    # Séparer train/test en gardant TOUTES les lignes (même celles sans target)
+    # Split en 3 périodes distinctes
     train = df[df.index < split_date].copy()
-    test = df[df.index >= split_date].copy()
+    validation = df[(df.index >= split_date) & (df.index < val_date)].copy()
+    test = df[df.index >= val_date].copy()
     
     feature_cols = [col for col in df.columns if col != 'Target']
     
+    # TRAIN
     X_train = train[feature_cols]
     y_train = train['Target']
-    X_test = test[feature_cols]
-    y_test = test['Target']
-    
-    # Filtrer les NaN uniquement pour l'entraînement
     train_valid = y_train.notna()
     X_train = X_train[train_valid]
     y_train = y_train[train_valid]
     
-    # Pour le test, on garde aussi les lignes sans target (pour prédiction)
-    test_valid = y_test.notna()
-    print(f"✅ Train: {len(X_train)} | Test: {test_valid.sum():.0f} (+ {(~test_valid).sum():.0f} sans target)")
-    print(f"   Train+: {y_train.sum():.0f} ({y_train.mean()*100:.2f}%)")
-    print(f"   Test+: {y_test[test_valid].sum():.0f} ({y_test[test_valid].mean()*100:.2f}%)")
+    # VALIDATION (pour early stopping, SANS FUITE)
+    X_val = validation[feature_cols]
+    y_val = validation['Target']
+    val_valid = y_val.notna()
+    X_val = X_val[val_valid]
+    y_val = y_val[val_valid]
     
-    return X_train, X_test, y_train, y_test
+    # TEST (garde les lignes sans target pour prédiction future)
+    X_test = test[feature_cols]
+    y_test = test['Target']
+    test_valid = y_test.notna()
+    
+    print(f"✅ Train: {len(X_train)} ({y_train.mean()*100:.2f}% positifs)")
+    print(f"✅ Validation: {len(X_val)} ({y_val.mean()*100:.2f}% positifs)")
+    print(f"✅ Test: {test_valid.sum():.0f} avec target + {(~test_valid).sum():.0f} sans target")
+    
+    return X_train, X_val, X_test, y_train, y_val, y_test
 
 
 # =============================================================================
 # 6. XGBOOST OPTIMISÉ
 # =============================================================================
 
-def train_xgboost(X_train, y_train, X_test, y_test):
-    """XGBoost optimisé pour HAUTE PRÉCISION"""
-    print("🚀 Entraînement XGBoost OPTIMISÉ...")
+def train_xgboost(X_train, y_train, X_val, y_val):
+    """XGBoost optimisé SANS FUITE - utilise validation set séparé"""
+    print("🚀 Entraînement XGBoost SANS FUITE...")
     
     neg = (y_train == 0).sum()
     pos = (y_train == 1).sum()
@@ -316,18 +324,20 @@ def train_xgboost(X_train, y_train, X_test, y_test):
         'max_delta_step': 1,
         'random_state': RANDOM_STATE,
         'n_jobs': -1,
-        'tree_method': 'hist'
+        'tree_method': 'hist',
+        'early_stopping_rounds': 50
     }
     
     model = xgb.XGBClassifier(**params)
     
+    # ✅ CORRECTION CRITIQUE: eval_set utilise VALIDATION (pas test!)
     model.fit(
         X_train, y_train,
-        eval_set=[(X_test, y_test)],
+        eval_set=[(X_val, y_val)],
         verbose=50
     )
     
-    print(f"✅ Modèle entraîné")
+    print(f"✅ Modèle entraîné SANS FUITE (early stopping sur validation set)")
     return model
 
 
@@ -534,9 +544,9 @@ def main():
     
     btc_hourly = create_target(btc_hourly)
     
-    X_train, X_test, y_train, y_test = temporal_split(btc_hourly)
+    X_train, X_val, X_test, y_train, y_val, y_test = temporal_split(btc_hourly)
     
-    model = train_xgboost(X_train, y_train, X_test, y_test)
+    model = train_xgboost(X_train, y_train, X_val, y_val)
     y_pred, y_proba = predict_with_threshold(model, X_test)
     
     metrics = evaluate_model(y_test, y_pred, y_proba)
